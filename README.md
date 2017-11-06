@@ -12,6 +12,4 @@ Um pequeno teste de desenvolvimento de um Web App em JSF.
 1) Importe o projeto como um projeto Maven.
 2) Configure no persistance.xml parâmetros da sua conexão com o banco.
 3) Nas propriedades do projeto, em "Targeted Runtimes", selecione o JBoss alvo.
-4.1) Selecione Debug As/Run As -> ...on Server.
-ou
-4.2) Export WAR File, e efetue o deploy do WAR no Jboss.
+4) Selecione Debug As/Run As ou Export WAR File, e efetue o deploy do WAR no Jboss.
