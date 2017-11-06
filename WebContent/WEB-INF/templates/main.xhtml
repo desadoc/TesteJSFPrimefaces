@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:insert name="metadata"></ui:insert>
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="main.css" />
+	<title>Teste App - <ui:insert name="page-title"></ui:insert></title>
+</h:head>
+
+<h:body>
+	<p:layout styleClass="root" fullPage="true">
+		<p:layoutUnit position="center" styleClass="center-container" size="100">
+			<h1>Teste App</h1>
+			<p:menubar>
+				<p:menuitem value="Home" url="/index.xhtml" />
+				<p:submenu label="Itens">
+					<p:menuitem value="Inserir" url="/pages/item/editar.xhtml" />
+					<p:menuitem value="Listar" url="/pages/item/listar.xhtml" />
+				</p:submenu>
+				<p:submenu label="Lançamentos">
+					<p:menuitem value="Inserir" url="/pages/lancamento/editar.xhtml" />
+					<p:menuitem value="Listar" url="/pages/lancamento/listar.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Intersecção" url="/pages/interseccao.xhtml" />
+				<p:menuitem value="Consultas" url="/pages/consultas.xhtml" />
+			</p:menubar>
+			<h:panelGroup layout="block" styleClass="contents">
+				<ui:insert name="contents">Actual Page Contents</ui:insert>
+			</h:panelGroup>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

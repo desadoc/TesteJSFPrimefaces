@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/WEB-INF/templates/main.xhtml">
+		<ui:define name="page-title">Consultar Intersecção</ui:define>
+
+		<ui:define name="contents">
+			<h:form>
+				<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+			</h:form>
+			<h:form>
+				<h:panelGrid columns="3" class="ui-noborder">
+					<p:outputLabel value="Intervalo 1:" />
+					<p:inputText id="aStart" value="#{interseccaoVC.intervaloAStart}" />
+					<p:inputText id="aEnd" value="#{interseccaoVC.intervaloAEnd}" />
+					
+					<p:outputLabel value="Intervalo 2:" />
+					<p:inputText id="bStart" value="#{interseccaoVC.intervaloBStart}" />
+					<p:inputText id="bEnd" value="#{interseccaoVC.intervaloBEnd}" />
+					
+					<h:panelGroup />
+					<p:commandButton value="Consultar" actionListener="#{interseccaoVC.consultar}" />
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

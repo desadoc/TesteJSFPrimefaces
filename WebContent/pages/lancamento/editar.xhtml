@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/WEB-INF/templates/main.xhtml">
+		<ui:define name="page-title">Inserir novo Lançamento</ui:define>
+
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:viewParam name="id" value="#{lancamentoVC.id}" />
+				<f:event type="preRenderView" listener="#{lancamentoVC.init}" />
+			</f:metadata>
+		</ui:define>
+
+		<ui:define name="contents">
+			<h:form>
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+			</h:form>
+			<h:form>
+				<h:panelGrid columns="2" class="ui-noborder">
+					<p:outputLabel value="Data Inicial:" />
+					<p:calendar id="dataInicial" value="#{lancamentoVC.bean.dataInicial}" showOn="button" locale="pt_BR" />
+					
+					<p:outputLabel value="Data Final:" />
+					<p:calendar id="dataFinal" value="#{lancamentoVC.bean.dataFinal}" showOn="button" locale="pt_BR" />
+					
+					<p:outputLabel value="Valor Total:" />
+					<p:inputText id="valorTotal" value="#{lancamentoVC.bean.valorTotal}" disabled="true">
+						<f:convertNumber pattern="¤#,##0.00" type="currency" currencySymbol="R$ " locale="pt_BR" />
+					</p:inputText>
+					
+					<p:outputLabel value="Observação:" />
+					<p:inputTextarea id="observacao"
+								value="#{lancamentoVC.bean.observacao}" />
+					
+					<p:outputLabel value="Itens:" />
+					<p:pickList value="#{lancamentoVC.dualList}" var="item" itemValue="#{item}" itemLabel="#{lancamentoVC.formatItem(item)}" converter="itemConverter">
+								<f:facet name="sourceCaption">Disponíveis</f:facet>
+								<f:facet name="targetCaption">Incluídos</f:facet>
+								
+								<p:ajax event="transfer" listener="#{lancamentoVC.onDualListTransfer}" update="valorTotal" />
+							</p:pickList>
+					
+					<h:panelGroup layout="block" />
+					<p:commandButton value="Salvar" actionListener="#{lancamentoVC.submit}" />
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

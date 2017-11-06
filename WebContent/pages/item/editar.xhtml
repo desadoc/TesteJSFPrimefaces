@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/WEB-INF/templates/main.xhtml">
+		<ui:define name="page-title">Inserir novo Item</ui:define>
+
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:viewParam name="id" value="#{itemVC.id}" />
+				<f:event type="preRenderView" listener="#{itemVC.init}" />
+			</f:metadata>
+		</ui:define>
+
+		<ui:define name="contents">
+			<h:form>
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+			</h:form>
+			<h:form>
+				<p:panelGrid class="ui-noborder">
+					<p:row>
+						<p:column>
+							<p:outputLabel styleClass="ui-g-12 ui-md-2" value="Descrição:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="descricao" value="#{itemVC.bean.descricao}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel styleClass="ui-g-12 ui-md-2" value="Valor:" />
+						</p:column>
+						<p:column>
+							<p:inputNumber id="valor" value="#{itemVC.bean.valor}"
+								symbol="R$ " decimalPlaces="2" thousandSeparator="."
+								decimalSeparator="," emptyValue="zero" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column />
+						<p:column>
+							<p:commandButton value="Salvar" actionListener="#{itemVC.submit}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

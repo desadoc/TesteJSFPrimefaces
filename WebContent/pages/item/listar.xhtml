@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/WEB-INF/templates/main.xhtml">
+		<ui:define name="page-title">Lista de Lançamentos</ui:define>
+
+		<ui:define name="contents">
+			<h:form>
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+			</h:form>
+			<p:dataTable id="dt" var="item" value="#{itemVC.all}" tableStyle="text-align:center;">
+				<f:facet name="header">
+					<h:outputText value="Itens" />
+				</f:facet>
+
+				<p:column headerText="Id">
+					<h:outputText value="#{item.id}" />
+				</p:column>
+
+				<p:column headerText="Valor">
+					<h:outputText value="#{item.valor}">
+						<f:convertNumber pattern="¤#,##0.00" type="currency"
+							currencySymbol="R$ " locale="pt_BR" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Descrição">
+					<h:outputText value="#{item.descricao}" />
+				</p:column>
+
+				<p:column>
+					<h:outputLink value="editar.xhtml?id=#{item.id}">
+						Editar
+					</h:outputLink>
+				</p:column>
+
+				<p:column>
+					<p:commandLink action="#{itemVC.delete(item.id)}" update=":dt">
+						Remover
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
